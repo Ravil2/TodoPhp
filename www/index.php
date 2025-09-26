@@ -3,6 +3,26 @@
 require_once('./config.php');
 require_once('./db.php');
 
+if (isset($_POST['title']) && !empty(trim($_POST['title']))) {
+    $task = R::dispense('tasks');
+    $task->title = $_POST['title'];
+    R::store($task);
+}
+
+if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $task = R::load('tasks',
+            $_GET['id']);
+    if ($task->id) {
+        R::trash($task);
+    }
+}
+
+if (isset($_GET['action']) && $_GET['action'] === 'changeStatus' && isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $task = R::load('tasks',
+            $_GET['id']);
+    $task->status = $task->status === 'ready' ? null : 'ready';
+    R::store($task);
+}
 ?>
 
 

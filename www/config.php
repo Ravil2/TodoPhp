@@ -8,7 +8,7 @@ define('DB_USER',
 define('DB_PASS',
     'tiger');
 define('DB_NAME',
-    `todo`);
+    'todo');
 
 //Тут Я прописал пути к корневым папкам скрипта
 define('ROOT',
