@@ -23,6 +23,20 @@ if (isset($_GET['action']) && $_GET['action'] === 'changeStatus' && isset($_GET[
     $task->status = $task->status === 'ready' ? null : 'ready';
     R::store($task);
 }
+
+$tasks = R::findAll('tasks');
+
+$count_all = count($tasks);
+
+$count_done = 0;
+
+$count_undone = $count_all - $count_done;
+
+
+foreach ($tasks as $task) {
+    $task->status ? $count_done++ : '';
+}
+
 ?>
 
 
@@ -33,6 +47,7 @@ include(ROOT . 'templates/page_parts/head.tpl');
 ?>
 <body class="todo-app p-5">
 
+
 <?php
 include(ROOT . 'templates/page_parts/header.tpl');
 ?>
@@ -40,8 +55,6 @@ include(ROOT . 'templates/page_parts/header.tpl');
 <ul class="list-group mb-3">
     <?php
 
-
-    $tasks = R::findAll('tasks');
 
     if (empty($tasks)) {
         include(ROOT . 'templates/empty.tpl');
