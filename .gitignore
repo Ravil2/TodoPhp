@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# Env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+
+# Build / output
+.buildtest/
+dist/
+.next/
+
+# Docker / config / data
+config/*
+data/*
+www/**
